@@ -1,0 +1,14 @@
+CREATE PROCEDURE `sp_categoriavehiculoINS`(
+    _Descripcion varchar(20),
+    OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(Descripcion) FROM tbl_categoriavehiculo
+		WHERE Descripcion=_Descripcion) = 1 THEN
+        	SELECT 0 INTO estado;
+	ELSE
+		INSERT INTO tbl_categoriavehiculo (Descripcion)
+        	VALUES (_Descripcion);
+        	SELECT 1 INTO estado;
+	END IF;
+END

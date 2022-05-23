@@ -1,0 +1,17 @@
+CREATE PROCEDURE `sp_vehiculoUPD`(
+    	_idPatente varchar(7),
+	_Marca varchar(15),
+    	_Modelo varchar(15),
+    	_Color varchar(10),
+    	OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo
+		WHERE idPatente=_idPatente) = 1 THEN
+       		UPDATE tbl_vehiculo SET Marca=_Marca, Modelo=_Modelo, Color=_Color
+        	WHERE idPatente = _idPatente;
+        	SELECT 1 INTO estado;
+	ELSE
+       		SELECT 0 INTO estado;
+	END IF;
+END

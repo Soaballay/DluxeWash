@@ -1,0 +1,19 @@
+CREATE PROCEDURE `sp_clienteINS`(
+	_idDNI int(8),
+    	_Apellido varchar(20),
+    	_Nombre varchar(20),
+    	_Domicilio varchar(45),
+    	_Telefono int(10),
+    	_Mail varchar(45),
+    	OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(idDNI) FROM tbl_cliente
+		WHERE idDNI=_idDNI) = 1 THEN
+        	SELECT 0 INTO estado;
+	ELSE
+		INSERT INTO tbl_cliente (idDNI, Apellido, Nombre, Domicilio, Telefono, Mail)
+        	VALUES (_idDNI, _Apellido, _Nombre, _Domicilio, _Telefono, _Mail);
+        	SELECT 1 INTO estado;
+	END IF;
+END

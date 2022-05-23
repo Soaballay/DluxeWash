@@ -1,0 +1,6 @@
+CREATE PROCEDURE `sp_clienteSEL`(
+	_idDNI int(8)
+)
+BEGIN
+	SELECT * FROM tbl_cliente WHERE idDNI = _idDNI;
+END

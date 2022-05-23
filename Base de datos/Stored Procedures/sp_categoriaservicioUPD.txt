@@ -1,0 +1,16 @@
+CREATE PROCEDURE `sp_categoriaservicioUPD`(
+	_idCServicio int,
+    	_Nombre varchar(20),
+   	_Descripcion varchar(200),
+    	OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(idCServicio) FROM tbl_categoriaservicio
+		WHERE idCServicio=_idCServicio) = 1 THEN
+        	UPDATE tbl_categoriaservicio SET Nombre=_Nombre, Descripcion=_Descripcion
+        	WHERE idCServicio = _idCServicio;
+        	SELECT 1 INTO estado;
+	ELSE
+        	SELECT 0 INTO estado;
+	END IF;
+END
