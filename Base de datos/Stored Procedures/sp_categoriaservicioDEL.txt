@@ -1,0 +1,13 @@
+CREATE PROCEDURE `sp_categoriaservicioDEL`(
+	_idCServicio int,
+    	OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(idCServicio) FROM tbl_categoriaservicio
+		WHERE idCServicio=_idCServicio) = 0 THEN
+        	SELECT 0 INTO estado;
+	ELSE
+		UPDATE tbl_categoriaservicio SET F_Baja = NOW() WHERE idCServicio=_idCServicio;
+         	SELECT 1 INTO estado;
+	END IF;
+END

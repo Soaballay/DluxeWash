@@ -1,0 +1,13 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_vehiculoDEL`(
+	_idPatente varchar(7),
+    	OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo
+		WHERE idPatente=_idPatente) = 0 THEN
+        	SELECT 0 INTO estado;
+	ELSE
+		UPDATE tbl_vehiculo SET F_Baja = NOW() WHERE idPatente=_idPatente;
+         	SELECT 1 INTO estado;
+	END IF;
+END

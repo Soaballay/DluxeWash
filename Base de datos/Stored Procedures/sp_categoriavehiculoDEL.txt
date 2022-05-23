@@ -1,0 +1,13 @@
+CREATE PROCEDURE `sp_categoriavehiculoDEL`(
+	_idCVehiculo int,
+    	OUT estado tinyint
+)
+BEGIN
+	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo
+		WHERE idCVehiculo=_idCVehiculo) = 0 THEN
+        	SELECT 0 INTO estado;
+	ELSE
+		UPDATE tbl_categoriavehiculo SET F_Baja = NOW() WHERE idCVehiculo=_idCVehiculo;
+         	SELECT 1 INTO estado;
+	END IF;
+END
