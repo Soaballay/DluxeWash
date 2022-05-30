@@ -1,3 +1,9 @@
+/* 
+Procedimiento para realizar una baja lógica 
+con parámetro de entrada el id y
+de salida el estado del procedimiento
+*/
+
 CREATE PROCEDURE `sp_categoriaservicioDEL`(
 	_idCServicio int,
     	OUT estado tinyint
