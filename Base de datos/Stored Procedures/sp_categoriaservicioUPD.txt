@@ -1,5 +1,5 @@
 /* 
-Procedimiento para modificar un nuevo servicio.
+Procedimiento para modificar una categoria de servicio.
 Parámetros de entrada Id, Nombre y Descripción.
 Parámetro de salida el estado del procedimiento.
 */
