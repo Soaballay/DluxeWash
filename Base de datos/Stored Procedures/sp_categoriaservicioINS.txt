@@ -1,5 +1,5 @@
 /* 
-Procedimiento para insertar una nueva categorái de servicio.
+Procedimiento para insertar una nueva categoría de servicio.
 Verifica que el Nombre ya no exista en la BBDD y luego inserta.
 Parámetro de salida el estado del procedimiento.
 */
