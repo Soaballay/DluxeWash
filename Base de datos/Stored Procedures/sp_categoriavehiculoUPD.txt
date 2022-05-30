@@ -1,6 +1,6 @@
 /* 
 Procedimiento para modificar una categoria de vehículo.
-Parámetros de entrada Id y Descripción.
+Verifica que el id exista, luego modifica sus campos.
 Parámetro de salida el estado del procedimiento.
 */
 
