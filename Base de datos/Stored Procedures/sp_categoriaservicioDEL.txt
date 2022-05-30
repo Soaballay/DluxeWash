@@ -1,7 +1,9 @@
 /* 
-Procedimiento para realizar una baja lógica con fecha de baja.
-Parámetro de entrada el id y de salida el estado del procedimiento
+Procedimiento para realizar una baja lógica.
+Verifica que el id exista en la BBDD, luego inserta la fecha actual como F_Baja.
+Parámetro de salida el estado del procedimiento.
 */
+
 
 CREATE PROCEDURE `sp_categoriaservicioDEL`(
 	_idCServicio int,
