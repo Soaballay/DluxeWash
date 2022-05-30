@@ -1,3 +1,9 @@
+/* 
+Procedimiento para insertar un nuevo cliente.
+Verifica que el DNI ya no exista en la BBDD y luego inserta.
+Parámetro de salida el estado del procedimiento.
+*/
+
 CREATE PROCEDURE `sp_clienteINS`(
 	_idDNI int(8),
     	_Apellido varchar(20),
