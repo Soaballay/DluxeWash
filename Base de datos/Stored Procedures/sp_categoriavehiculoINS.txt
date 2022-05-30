@@ -1,6 +1,6 @@
 /* 
-Procedimiento para insertar una nueva categoria de vehículo.
-Parámetro de entrada la Descripción. Id autoincremental.
+Procedimiento para insertar una nueva categoría de vehículo.
+Verifica que la Descripción ya no exista en la BBDD y luego inserta.
 Parámetro de salida el estado del procedimiento.
 */
 
