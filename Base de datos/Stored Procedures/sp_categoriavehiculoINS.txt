@@ -1,3 +1,9 @@
+/* 
+Procedimiento para insertar una nueva categoria de vehículo.
+Parámetro de entrada la Descripción. Id autoincremental.
+Parámetro de salida el estado del procedimiento.
+*/
+
 CREATE PROCEDURE `sp_categoriavehiculoINS`(
     _Descripcion varchar(20),
     OUT estado tinyint
