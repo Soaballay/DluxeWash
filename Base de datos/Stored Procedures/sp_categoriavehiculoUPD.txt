@@ -1,3 +1,9 @@
+/* 
+Procedimiento para modificar una categoria de vehículo.
+Parámetros de entrada Id y Descripción.
+Parámetro de salida el estado del procedimiento.
+*/
+
 CREATE PROCEDURE `sp_categoriavehiculoUPD`(
 	_idCVehiculo int,
 	_Descripcion varchar(20),
