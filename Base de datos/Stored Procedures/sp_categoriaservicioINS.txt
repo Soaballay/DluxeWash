@@ -1,6 +1,6 @@
 /* 
-Procedimiento para insertar un nuevo servicio.
-Parámetros de entrada Nombre y Descripción. Id autoincremental.
+Procedimiento para insertar una nueva categoría de servicio.
+Parámetros de entrada el Nombre y la Descripción. Id autoincremental.
 Parámetro de salida el estado del procedimiento.
 */
 
