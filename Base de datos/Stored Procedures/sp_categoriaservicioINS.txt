@@ -1,6 +1,6 @@
 /* 
-Procedimiento para insertar una nueva categoría de servicio.
-Parámetros de entrada el Nombre y la Descripción. Id autoincremental.
+Procedimiento para insertar una nueva categorái de servicio.
+Verifica que el Nombre ya no exista en la BBDD y luego inserta.
 Parámetro de salida el estado del procedimiento.
 */
 
@@ -10,8 +10,8 @@ CREATE PROCEDURE `sp_categoriaservicioINS`(
     OUT estado tinyint
 )
 BEGIN
-	IF (SELECT COUNT(Descripcion) FROM tbl_categoriaservicio
-		WHERE Descripcion=_Descripcion) = 1 THEN
+	IF (SELECT COUNT(Nombre) FROM tbl_categoriaservicio
+		WHERE Nombre=_Nombre) = 1 THEN
         	SELECT 0 INTO estado;
 	ELSE
 		INSERT INTO tbl_categoriaservicio (Nombre, Descripcion)
