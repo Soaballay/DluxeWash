@@ -1,3 +1,9 @@
+/* 
+Procedimiento para modificar un nuevo servicio.
+Parámetros de entrada Id, Nombre y Descripción.
+Parámetro de salida el estado del procedimiento.
+*/
+
 CREATE PROCEDURE `sp_categoriaservicioUPD`(
 	_idCServicio int,
     	_Nombre varchar(20),
