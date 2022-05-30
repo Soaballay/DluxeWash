@@ -1,3 +1,8 @@
+/* 
+Procedimiento para realizar una baja lógica con fecha de baja.
+Parámetro de entrada el id y de salida el estado del procedimiento
+*/
+
 CREATE PROCEDURE `sp_categoriavehiculoDEL`(
 	_idCVehiculo int,
     	OUT estado tinyint
