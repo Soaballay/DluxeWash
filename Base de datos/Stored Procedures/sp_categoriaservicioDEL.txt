@@ -1,7 +1,6 @@
 /* 
-Procedimiento para realizar una baja lógica 
-con parámetro de entrada el id y
-de salida el estado del procedimiento
+Procedimiento para realizar una baja lógica con fecha de baja.
+Parámetro de entrada el id y de salida el estado del procedimiento
 */
 
 CREATE PROCEDURE `sp_categoriaservicioDEL`(
