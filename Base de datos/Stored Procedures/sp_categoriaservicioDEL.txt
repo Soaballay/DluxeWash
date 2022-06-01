@@ -1,20 +1,19 @@
 /* 
-Procedimiento para realizar una baja lógica.
-Verifica que el id exista en la BBDD, luego inserta la fecha actual como F_Baja.
-Parámetro de salida el estado del procedimiento.
+Procedimiento para realizar la baja lógica de una categoría de servicio.
+Se ingresa id y verifica que exista en la BBDD. 
+Luego inserta la fecha actual en F_Baja para realizar la baja lógica.
 */
-
 
 CREATE PROCEDURE `sp_categoriaservicioDEL`(
 	_idCServicio int,
-    	OUT estado tinyint
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
 	IF (SELECT COUNT(idCServicio) FROM tbl_categoriaservicio
 		WHERE idCServicio=_idCServicio) = 0 THEN
-        	SELECT 0 INTO estado;
+        	SELECT 0 INTO estado;		-- id inexistente, no se realizó la baja
 	ELSE
 		UPDATE tbl_categoriaservicio SET F_Baja = NOW() WHERE idCServicio=_idCServicio;
-         	SELECT 1 INTO estado;
+         	SELECT 1 INTO estado;		-- id existente, se realizó la baja
 	END IF;
 END
