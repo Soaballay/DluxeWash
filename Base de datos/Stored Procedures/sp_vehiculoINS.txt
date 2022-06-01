@@ -1,20 +1,23 @@
+/* 
+Procedimiento para insertar un nuevo vehículo.
+Verifica que la Patente no exista en la BBDD y luego inserta.
+*/
+
 CREATE PROCEDURE `sp_vehiculoINS`(
 	_idDNI int(8),
     	_idPatente varchar(7),
 	_Marca varchar(15),
     	_Modelo varchar(15),
     	_Color varchar(10),
-    	OUT estado tinyint
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
-	IF (SELECT COUNT(idDNI) FROM tbl_cliente
-		WHERE idDNI=_idDNI) = 0 OR
-		(SELECT COUNT(idDNI) FROM tbl_vehiculo
+	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo
 		WHERE idPatente=_idPatente) = 1 THEN
-        	SELECT 0 INTO estado;
+        	SELECT 0 INTO estado;		-- Patente existente, no se insertó
 	ELSE
 		INSERT INTO tbl_vehiculo (idDNI, idPatente, Marca, Modelo, Color)
        		VALUES (_idDNI, _idPatente, _Marca, _Modelo, _Color);
-        	SELECT 1 INTO estado;
+        	SELECT 1 INTO estado;		-- Patente inexistente, se insertó vehículo
 	END IF;
 END
