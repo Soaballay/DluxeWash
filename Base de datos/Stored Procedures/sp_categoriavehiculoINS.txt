@@ -1,20 +1,19 @@
 /* 
 Procedimiento para insertar una nueva categoría de vehículo.
-Verifica que la Descripción ya no exista en la BBDD y luego inserta.
-Parámetro de salida el estado del procedimiento.
+Verifica que la Descripción no exista en la BBDD y luego inserta.
 */
 
 CREATE PROCEDURE `sp_categoriavehiculoINS`(
-    _Descripcion varchar(20),
-    OUT estado tinyint
+    	_Descripcion varchar(20),
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
 	IF (SELECT COUNT(Descripcion) FROM tbl_categoriavehiculo
 		WHERE Descripcion=_Descripcion) = 1 THEN
-        	SELECT 0 INTO estado;
+        	SELECT 0 INTO estado;		-- Descripción existente, no se insertó
 	ELSE
 		INSERT INTO tbl_categoriavehiculo (Descripcion)
         	VALUES (_Descripcion);
-        	SELECT 1 INTO estado;
+        	SELECT 1 INTO estado;		-- Descripción inexistente, se insertó categoría
 	END IF;
 END
