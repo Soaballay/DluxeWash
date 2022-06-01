@@ -1,7 +1,6 @@
 /* 
 Procedimiento para insertar un nuevo cliente.
-Verifica que el DNI ya no exista en la BBDD y luego inserta.
-Parámetro de salida el estado del procedimiento.
+Verifica que el DNI no exista en la BBDD y luego inserta.
 */
 
 CREATE PROCEDURE `sp_clienteINS`(
@@ -11,15 +10,15 @@ CREATE PROCEDURE `sp_clienteINS`(
     	_Domicilio varchar(45),
     	_Telefono int(10),
     	_Mail varchar(45),
-    	OUT estado tinyint
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
 	IF (SELECT COUNT(idDNI) FROM tbl_cliente
 		WHERE idDNI=_idDNI) = 1 THEN
-        	SELECT 0 INTO estado;
+        	SELECT 0 INTO estado;		-- DNI existente, no se insertó
 	ELSE
 		INSERT INTO tbl_cliente (idDNI, Apellido, Nombre, Domicilio, Telefono, Mail)
         	VALUES (_idDNI, _Apellido, _Nombre, _Domicilio, _Telefono, _Mail);
-        	SELECT 1 INTO estado;
+        	SELECT 1 INTO estado;		-- DNI inexistente, se insertó cliente
 	END IF;
 END
