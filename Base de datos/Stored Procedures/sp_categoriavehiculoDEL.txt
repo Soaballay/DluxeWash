@@ -1,18 +1,19 @@
 /* 
-Procedimiento para realizar una baja lógica con fecha de baja.
-Parámetro de entrada el id y de salida el estado del procedimiento
+Procedimiento para realizar la baja lógica de una categoría de vehículo.
+Se ingresa id y verifica que exista en la BBDD. 
+Luego inserta la fecha actual en F_Baja para realizar la baja lógica.
 */
 
 CREATE PROCEDURE `sp_categoriavehiculoDEL`(
 	_idCVehiculo int,
-    	OUT estado tinyint
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
 	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo
 		WHERE idCVehiculo=_idCVehiculo) = 0 THEN
-        	SELECT 0 INTO estado;
+        	SELECT 0 INTO estado;		-- id inexistente, no se realizó la baja
 	ELSE
 		UPDATE tbl_categoriavehiculo SET F_Baja = NOW() WHERE idCVehiculo=_idCVehiculo;
-         	SELECT 1 INTO estado;
+         	SELECT 1 INTO estado;		-- id existente, se realizó la baja
 	END IF;
 END
