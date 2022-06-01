@@ -1,21 +1,20 @@
 /* 
-Procedimiento para modificar una categoria de vehículo.
-Verifica que el id exista, luego modifica sus campos.
-Parámetro de salida el estado del procedimiento.
+Procedimiento para modificar una categoría de vehículo.
+Se ingresa id y verifica que exista en la BBDD. Luego actualiza los campos ingresados.
 */
 
 CREATE PROCEDURE `sp_categoriavehiculoUPD`(
 	_idCVehiculo int,
 	_Descripcion varchar(20),
-    	OUT estado tinyint
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
 	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo
 		WHERE idCVehiculo=_idCVehiculo) = 1 THEN
         	UPDATE tbl_categoriavehiculo SET Descripcion=_Descripcion
         	WHERE idCVehiculo = _idCVehiculo;
-        	SELECT 1 INTO estado;
+        	SELECT 1 INTO estado;		-- id existente, se modificó categoría
 	ELSE
-       		SELECT 0 INTO estado;
+       		SELECT 0 INTO estado;		-- id inexistente, no se modificó
 	END IF;
 END
