@@ -1,22 +1,21 @@
 /* 
-Procedimiento para modificar una categoria de servicio.
-Verifica que el id exista luego modifica sus campos.
-Parámetro de salida el estado del procedimiento.
+Procedimiento para modificar una categoría de servicio.
+Se ingresa id y verifica que exista en la BBDD. Luego actualiza los campos ingresados.
 */
 
 CREATE PROCEDURE `sp_categoriaservicioUPD`(
 	_idCServicio int,
     	_Nombre varchar(20),
    	_Descripcion varchar(200),
-    	OUT estado tinyint
+    	OUT estado tinyint			-- estado del procedimiento
 )
 BEGIN
 	IF (SELECT COUNT(idCServicio) FROM tbl_categoriaservicio
 		WHERE idCServicio=_idCServicio) = 1 THEN
         	UPDATE tbl_categoriaservicio SET Nombre=_Nombre, Descripcion=_Descripcion
         	WHERE idCServicio = _idCServicio;
-        	SELECT 1 INTO estado;
+        	SELECT 1 INTO estado;		-- id existente, se modificó categoría
 	ELSE
-        	SELECT 0 INTO estado;
+        	SELECT 0 INTO estado;		-- id inexistente, no se modificó
 	END IF;
 END
