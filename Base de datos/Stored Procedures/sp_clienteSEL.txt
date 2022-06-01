@@ -1,3 +1,5 @@
+-- Procedimiento para buscar un cliente a través del DNI.
+
 CREATE PROCEDURE `sp_clienteSEL`(
 	_idDNI int(8)
 )
