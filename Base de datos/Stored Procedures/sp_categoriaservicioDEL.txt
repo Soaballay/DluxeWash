@@ -5,7 +5,7 @@ Luego inserta la fecha actual en F_Baja para realizar la baja lógica.
 */
 
 CREATE PROCEDURE `sp_categoriaservicioDEL`(
-	_idCServicio int,
+	_idCServicio int
 )
 BEGIN
 	IF (SELECT COUNT(idCServicio) FROM tbl_categoriaservicio WHERE idCServicio=_idCServicio) = 1 THEN
