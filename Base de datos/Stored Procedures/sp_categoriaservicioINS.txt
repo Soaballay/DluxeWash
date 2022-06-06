@@ -5,16 +5,11 @@ Verifica que el Nombre no exista en la BBDD y luego inserta.
 
 CREATE PROCEDURE `sp_categoriaservicioINS`(
  	_Nombre varchar(20),
-    	_Descripcion varchar(200),
-    	OUT estado tinyint			-- estado del procedimiento
+    	_Descripcion varchar(200)
 )
 BEGIN
-	IF (SELECT COUNT(Nombre) FROM tbl_categoriaservicio
-		WHERE Nombre=_Nombre) = 1 THEN
-        	SELECT 0 INTO estado;		-- Nombre existente, no se insertó
-	ELSE
+	IF (SELECT COUNT(Nombre) FROM tbl_categoriaservicio WHERE Nombre=_Nombre) = 0 THEN
 		INSERT INTO tbl_categoriaservicio (Nombre, Descripcion)
         	VALUES (_Nombre, _Descripcion);
-        	SELECT 1 INTO estado;		-- Nombre inexistente, se insertó categoría
 	END IF;
 END
