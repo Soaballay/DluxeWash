@@ -5,15 +5,10 @@ Luego inserta la fecha actual en F_Baja para realizar la baja lógica.
 */
 
 CREATE PROCEDURE `sp_vehiculoDEL`(
-	_idPatente varchar(7),
-    	OUT estado tinyint			-- estado del procedimiento
+	_idPatente varchar(7)
 )
 BEGIN
-	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo
-		WHERE idPatente=_idPatente) = 0 THEN
-        	SELECT 0 INTO estado;		-- Patente inexistente, no se realizó la baja
-	ELSE
+	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo WHERE idPatente=_idPatente) = 1 THEN
 		UPDATE tbl_vehiculo SET F_Baja = NOW() WHERE idPatente=_idPatente;
-         	SELECT 1 INTO estado;		-- Patente existente,  se realizó la baja
 	END IF;
 END
