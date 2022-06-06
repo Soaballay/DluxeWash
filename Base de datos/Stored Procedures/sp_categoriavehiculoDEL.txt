@@ -5,15 +5,10 @@ Luego inserta la fecha actual en F_Baja para realizar la baja lógica.
 */
 
 CREATE PROCEDURE `sp_categoriavehiculoDEL`(
-	_idCVehiculo int,
-    	OUT estado tinyint			-- estado del procedimiento
+	_idCVehiculo int
 )
 BEGIN
-	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo
-		WHERE idCVehiculo=_idCVehiculo) = 0 THEN
-        	SELECT 0 INTO estado;		-- id inexistente, no se realizó la baja
-	ELSE
+	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo WHERE idCVehiculo=_idCVehiculo) = 1 THEN
 		UPDATE tbl_categoriavehiculo SET F_Baja = NOW() WHERE idCVehiculo=_idCVehiculo;
-         	SELECT 1 INTO estado;		-- id existente, se realizó la baja
 	END IF;
 END
