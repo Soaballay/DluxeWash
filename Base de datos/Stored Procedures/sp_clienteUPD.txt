@@ -9,17 +9,11 @@ CREATE PROCEDURE `sp_clienteUPD`(
     	_Nombre varchar(20),
     	_Domicilio varchar(45),
     	_Telefono int(10),
-    	_Mail varchar(45),
-    	OUT estado tinyint			-- estado del procedimiento
+    	_Mail varchar(45)
 )
 BEGIN
-	IF (SELECT COUNT(idDNI) FROM tbl_cliente
-		WHERE idDNI=_idDNI) = 1 THEN
-        	UPDATE tbl_cliente SET Apellido=_Apellido, Nombre=_Nombre, 
-        	Domicilio=_Domicilio, Telefono=_Telefono, Mail=_Mail
+	IF (SELECT COUNT(idDNI) FROM tbl_cliente WHERE idDNI=_idDNI) = 1 THEN
+        	UPDATE tbl_cliente SET Apellido=_Apellido, Nombre=_Nombre, Domicilio=_Domicilio, Telefono=_Telefono, Mail=_Mail
         	WHERE idDNI = _idDNI;
-        	SELECT 1 INTO estado;		-- DNI existente, se modificó cliente
-	ELSE
-       		SELECT 0 INTO estado;		-- DNI inexistente, no se modificó
 	END IF;
 END
