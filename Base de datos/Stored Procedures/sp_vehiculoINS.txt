@@ -8,16 +8,11 @@ CREATE PROCEDURE `sp_vehiculoINS`(
     	_idPatente varchar(7),
 	_Marca varchar(15),
     	_Modelo varchar(15),
-    	_Color varchar(10),
-    	OUT estado tinyint			-- estado del procedimiento
+    	_Color varchar(10)
 )
 BEGIN
-	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo
-		WHERE idPatente=_idPatente) = 1 THEN
-        	SELECT 0 INTO estado;		-- Patente existente, no se insertó
-	ELSE
+	IF (SELECT COUNT(idPatente) FROM tbl_vehiculo WHERE idPatente=_idPatente) = 0 THEN
 		INSERT INTO tbl_vehiculo (idDNI, idPatente, Marca, Modelo, Color)
        		VALUES (_idDNI, _idPatente, _Marca, _Modelo, _Color);
-        	SELECT 1 INTO estado;		-- Patente inexistente, se insertó vehículo
 	END IF;
 END
