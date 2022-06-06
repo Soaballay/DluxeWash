@@ -5,16 +5,10 @@ Se ingresa id y verifica que exista en la BBDD. Luego actualiza los campos ingre
 
 CREATE PROCEDURE `sp_categoriavehiculoUPD`(
 	_idCVehiculo int,
-	_Descripcion varchar(20),
-    	OUT estado tinyint			-- estado del procedimiento
+	_Descripcion varchar(20)
 )
 BEGIN
-	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo
-		WHERE idCVehiculo=_idCVehiculo) = 1 THEN
-        	UPDATE tbl_categoriavehiculo SET Descripcion=_Descripcion
-        	WHERE idCVehiculo = _idCVehiculo;
-        	SELECT 1 INTO estado;		-- id existente, se modificó categoría
-	ELSE
-       		SELECT 0 INTO estado;		-- id inexistente, no se modificó
+	IF (SELECT COUNT(idCVehiculo) FROM tbl_categoriavehiculo WHERE idCVehiculo=_idCVehiculo) = 1 THEN
+        	UPDATE tbl_categoriavehiculo SET Descripcion=_Descripcion WHERE idCVehiculo = _idCVehiculo;
 	END IF;
 END
